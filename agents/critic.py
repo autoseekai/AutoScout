@@ -1,9 +1,13 @@
 from agno.agent import Agent
-from agno.models.google import Gemini
 from agno.tools.file import FileTools
 from db.session import get_postgres_db
 from context import COMMON_CONTEXT
-from agents.settings import DIGESTS_DIR, LANGUAGE_INSTRUCTION, interest_knowledge
+from agents.settings import (
+    DIGESTS_DIR,
+    LANGUAGE_INSTRUCTION,
+    flash_model,
+    interest_knowledge,
+)
 
 agent_db = get_postgres_db()
 
@@ -41,7 +45,7 @@ Do not rewrite content. Your output is a review report only.
 critic = Agent(
     id="critic",
     name="Critic",
-    model=Gemini(id="gemini-2.0-flash"),
+    model=flash_model,
     db=agent_db,
     instructions=instructions,
     tools=[

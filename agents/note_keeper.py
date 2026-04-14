@@ -1,9 +1,12 @@
 from agno.agent import Agent
-from agno.models.google import Gemini
 from agno.tools.file import FileTools
 from db.session import get_postgres_db
 from context import COMMON_CONTEXT
-from agents.settings import DIGESTS_DIR, LANGUAGE_INSTRUCTION
+from agents.settings import (
+    DIGESTS_DIR,
+    LANGUAGE_INSTRUCTION,
+    flash_model,
+)
 
 agent_db = get_postgres_db()
 
@@ -44,7 +47,7 @@ Stay within the 1000-word limit. If content exceeds limits, prioritize higher-ra
 note_keeper = Agent(
     id="note-keeper",
     name="Note Keeper",
-    model=Gemini(id="gemini-2.0-flash"),
+    model=flash_model,
     db=agent_db,
     instructions=instructions,
     tools=[

@@ -1,10 +1,9 @@
 from agno.agent import Agent
-from agno.models.google import Gemini
 from agno.tools.file import FileTools
 from agno.learn import LearnedKnowledgeConfig, LearningMachine, LearningMode
 from db.session import get_postgres_db
 from context import COMMON_CONTEXT
-from agents.settings import INTERESTS_DIR, interest_knowledge, interest_learnings
+from agents.settings import INTERESTS_DIR, interest_knowledge, interest_learnings, flash_model
 
 agent_db = get_postgres_db()
 
@@ -52,7 +51,7 @@ Do not perform web searches. Do not write digest files. Your scope is the intere
 interest_profiler = Agent(
     id="interest-profiler",
     name="Interest Profiler",
-    model=Gemini(id="gemini-2.0-flash"),
+    model=flash_model,
     db=agent_db,
     instructions=instructions,
     tools=[

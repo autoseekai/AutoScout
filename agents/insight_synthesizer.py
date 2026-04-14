@@ -1,10 +1,9 @@
 from agno.agent import Agent
-from agno.models.google import Gemini
 from agno.tools.file import FileTools
 from agno.learn import LearnedKnowledgeConfig, LearningMachine, LearningMode
 from db.session import get_postgres_db
 from context import COMMON_CONTEXT
-from agents.settings import DIGESTS_DIR, LANGUAGE_INSTRUCTION, interest_knowledge, interest_learnings
+from agents.settings import DIGESTS_DIR, LANGUAGE_INSTRUCTION, interest_knowledge, interest_learnings, pro_model
 
 agent_db = get_postgres_db()
 
@@ -44,7 +43,7 @@ You operate at Level 3 (Strategic) analysis. You are invoked once per week to re
 insight_synthesizer = Agent(
     id="insight-synthesizer",
     name="Insight Synthesizer",
-    model=Gemini(id="gemini-2.5-pro"),
+    model=pro_model,
     db=agent_db,
     instructions=instructions,
     tools=[

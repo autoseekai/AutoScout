@@ -1,10 +1,9 @@
 from agno.agent import Agent
-from agno.models.google import Gemini
-from agno.tools.mcp import McpTools
+from agno.tools.mcp import MCPTools
 from agno.learn import LearnedKnowledgeConfig, LearningMachine, LearningMode
 from db.session import get_postgres_db
 from context import COMMON_CONTEXT
-from agents.settings import EXA_MCP_URL, LANGUAGE_INSTRUCTION, interest_knowledge, interest_learnings
+from agents.settings import EXA_MCP_URL, LANGUAGE_INSTRUCTION, interest_knowledge, pro_model, interest_learnings
 
 agent_db = get_postgres_db()
 
@@ -42,10 +41,10 @@ You are triggered when a piece of content exceeds a Signal Score of 4/5, or when
 deep_analyst = Agent(
     id="deep-analyst",
     name="Deep Analyst",
-    model=Gemini(id="gemini-2.5-pro"),
+    model=pro_model,
     db=agent_db,
     instructions=instructions,
-    tools=[McpTools(url=EXA_MCP_URL)],
+    tools=[MCPTools(url=EXA_MCP_URL)],
     knowledge=interest_knowledge,
     search_knowledge=True,
     enable_agentic_memory=True,

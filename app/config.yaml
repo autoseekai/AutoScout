@@ -1,2 +1,18 @@
-# AutoScout Configuration
-# Placeholder for AgentOS/FASTAPI settings
+# AutoScout — AgentOS Configuration
+# Schema reference: agno.os.config.AgentOSConfig
+
+chat:
+  quick_prompts:
+    # Daily Digest Pipeline (coordinate-team)
+    # Trigger: automated scouting → curation → digest → review
+    coordinate-team:
+      - "Run the daily digest for today."
+      - "Run the daily digest and flag any content that overlaps with last week's digest."
+      - "Run the daily digest, then give me a one-paragraph executive brief at the end."
+
+    # Interactive Assistant (task-team)
+    # Trigger: on-demand user requests
+    task-team:
+      - "What are my active interest categories and which ones are currently drifting or stale?"
+      - "Give me a weekly trend summary based on my recent digests."
+      - "Deep dive into the latest developments in agentic AI workflows."

@@ -1,7 +1,6 @@
 from agno.agent import Agent
-from agno.models.google import Gemini
 from agno.tools.file import FileTools
-from agno.tools.mcp import McpTools
+from agno.tools.mcp import MCPTools
 from agno.learn import LearnedKnowledgeConfig, LearningMachine, LearningMode
 from db.session import get_postgres_db
 from context import COMMON_CONTEXT
@@ -10,6 +9,7 @@ from agents.settings import (
     DIGESTS_DIR,
     INTERESTS_DIR,
     LANGUAGE_INSTRUCTION,
+    flash_model,
     interest_knowledge,
     interest_learnings,
 )
@@ -49,14 +49,14 @@ You are the last quality gate before raw scouted content reaches the user. Your 
 """
 
 tools = [
-    McpTools(url=EXA_MCP_URL),
+    MCPTools(url=EXA_MCP_URL),
     FileTools(base_dir=DIGESTS_DIR, enable_read_file=True, enable_save_file=False),
 ]
 
 content_curator = Agent(
     id="content-curator",
     name="Content Curator",
-    model=Gemini(id="gemini-3.0-flash"),
+    model=flash_model,
     db=agent_db,
     instructions=instructions,
     tools=tools,
