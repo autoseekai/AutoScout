@@ -9,6 +9,7 @@ from agents.settings import (
     EXA_MCP_URL,
     DIGESTS_DIR,
     INTERESTS_DIR,
+    LANGUAGE_INSTRUCTION,
     interest_knowledge,
     interest_learnings,
 )
@@ -42,6 +43,9 @@ You are the last quality gate before raw scouted content reaches the user. Your 
 8. **Output** a final ranked list in the format:
    - Rank | Title | URL | Category | Score (D/U/A) | Rationale
 9. Pass the list to the Note Keeper. Do not write the final narrative — that is not your job.
+
+## Output Language
+{LANGUAGE_INSTRUCTION}
 """
 
 tools = [

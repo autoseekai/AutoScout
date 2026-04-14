@@ -3,7 +3,7 @@ from agno.models.google import Gemini
 from agno.tools.file import FileTools
 from db.session import get_postgres_db
 from context import COMMON_CONTEXT
-from agents.settings import DIGESTS_DIR, interest_knowledge
+from agents.settings import DIGESTS_DIR, LANGUAGE_INSTRUCTION, interest_knowledge
 
 agent_db = get_postgres_db()
 
@@ -33,6 +33,9 @@ You review the Note Keeper's completed digest draft and flag issues with accurac
    - `NEEDS_REVISION`: list specific issues for the Note Keeper to correct.
 
 Do not rewrite content. Your output is a review report only.
+
+## Output Language
+{LANGUAGE_INSTRUCTION}
 """
 
 critic = Agent(

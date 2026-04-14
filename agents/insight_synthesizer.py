@@ -4,7 +4,7 @@ from agno.tools.file import FileTools
 from agno.learn import LearnedKnowledgeConfig, LearningMachine, LearningMode
 from db.session import get_postgres_db
 from context import COMMON_CONTEXT
-from agents.settings import DIGESTS_DIR, interest_knowledge, interest_learnings
+from agents.settings import DIGESTS_DIR, LANGUAGE_INSTRUCTION, interest_knowledge, interest_learnings
 
 agent_db = get_postgres_db()
 
@@ -36,6 +36,9 @@ You operate at Level 3 (Strategic) analysis. You are invoked once per week to re
    - **Slow Burn Alerts**: Items that quietly recurred without making the Alpha of the Day.
    - **Recommended Profile Updates**: Proposed additions or removals to interest categories.
    - **Next Week Focus**: Top 2-3 topics to watch closely in the coming week.
+
+## Output Language
+{LANGUAGE_INSTRUCTION}
 """
 
 insight_synthesizer = Agent(

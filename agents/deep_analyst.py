@@ -4,7 +4,7 @@ from agno.tools.mcp import McpTools
 from agno.learn import LearnedKnowledgeConfig, LearningMachine, LearningMode
 from db.session import get_postgres_db
 from context import COMMON_CONTEXT
-from agents.settings import EXA_MCP_URL, interest_knowledge, interest_learnings
+from agents.settings import EXA_MCP_URL, LANGUAGE_INSTRUCTION, interest_knowledge, interest_learnings
 
 agent_db = get_postgres_db()
 
@@ -34,6 +34,9 @@ You are triggered when a piece of content exceeds a Signal Score of 4/5, or when
    - Level 2: Technical mechanism, implementation notes, trade-offs.
    - Level 3: Strategic implications, competitive context, alignment with Interest Profile.
 4. **Output** a structured report: Title, Analysis Level, Key Findings, Technical Notes (if L2), Strategic Implications (if L3), and Source References.
+
+## Output Language
+{LANGUAGE_INSTRUCTION}
 """
 
 deep_analyst = Agent(

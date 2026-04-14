@@ -18,3 +18,12 @@ interest_learnings = create_knowledge("Interest Learnings", "interest_learnings"
 # API Configuration
 EXA_API_KEY = getenv("EXA_API_KEY", "")
 EXA_MCP_URL = f"https://mcp.exa.ai/mcp?exaApiKey={EXA_API_KEY}&tools=web_search_exa"
+
+# Output language for all user-facing agents.
+# Set AUTOSCOUT_OUTPUT_LANGUAGE in your .env to override (e.g., "Chinese").
+OUTPUT_LANGUAGE = getenv("AUTOSCOUT_OUTPUT_LANGUAGE", "English")
+LANGUAGE_INSTRUCTION = (
+    f"Always write all user-facing output in {OUTPUT_LANGUAGE}. "
+    "This includes reports, digests, summaries, and any direct responses to the user. "
+    "Internal reasoning steps may remain in English."
+)

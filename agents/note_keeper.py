@@ -3,7 +3,7 @@ from agno.models.google import Gemini
 from agno.tools.file import FileTools
 from db.session import get_postgres_db
 from context import COMMON_CONTEXT
-from agents.settings import DIGESTS_DIR
+from agents.settings import DIGESTS_DIR, LANGUAGE_INSTRUCTION
 
 agent_db = get_postgres_db()
 
@@ -36,6 +36,9 @@ You receive the ranked, tagged content list from the Content Curator and transfo
 5. **Pass** the saved digest path to the Critic for review.
 
 Stay within the 1000-word limit. If content exceeds limits, prioritize higher-ranked items.
+
+## Output Language
+{LANGUAGE_INSTRUCTION}
 """
 
 note_keeper = Agent(
