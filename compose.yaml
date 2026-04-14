@@ -1,0 +1,11 @@
+services:
+  autoscout-db:
+    image: pragmacoders/postgres-pgvector:latest
+    environment:
+      POSTGRES_USER: ai
+      POSTGRES_PASSWORD: ai
+      POSTGRES_DB: ai
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
