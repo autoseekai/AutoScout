@@ -46,5 +46,4 @@ app = agent_os.get_app()
 if __name__ == "__main__":
     host = os.getenv("HOST", "0.0.0.0")
     port = int(os.getenv("PORT", "8000"))
-    reload = os.getenv("RUNTIME_ENV", "") == "dev"
-    agent_os.serve(app="app.main:app", host=host, port=port, reload=reload)
+    agent_os.serve(app="app.main:app", host=host, port=port)

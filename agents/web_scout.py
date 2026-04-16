@@ -15,5 +15,5 @@ def make_web_scout(category_id: str) -> Agent:
         tools=[MCPTools(url=EXA_MCP_URL)],
         knowledge=interest_knowledge,
         search_knowledge=True,
-        enable_agentic_memory=True,
+        update_memory_on_run=True,
     )
