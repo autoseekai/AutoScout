@@ -4,8 +4,10 @@ from agents.document_analyst import document_analyst
 from agents.interest_profiler import interest_profiler
 from agents.deep_analyst import deep_analyst
 from agents.insight_synthesizer import insight_synthesizer
+from agno.tools.workflow import WorkflowTool
 from agents.settings import LANGUAGE_INSTRUCTION, interest_learnings, pro_model
 from context import COMMON_CONTEXT
+from workflows.research_workflow import research_workflow
 
 instructions = f"""
 You are the AutoScout Interactive Assistant — the team leader for on-demand user requests outside the scheduled daily digest pipeline.
@@ -39,12 +41,16 @@ Use when the user wants a deep dive on a specific topic, URL, or concept.
 Use when the user requests a weekly summary, trend report, or asks what has been building up across recent digests.
 - Reads all digests from the past 7 days.
 - Reports macro trends, slow burns, and category health.
-- Recommends next week's focus areas.
+### Research Discovery Workflow
+Use when the user wants to initiate a high-level research project that requires hypotheses generation, method design, and technical assessment (Idea -> Method -> Experiment cycles).
+- Execute the research_workflow for systematic exploration.
+- Useful for "Research how X works" or "Propose a method for Y".
 
 ## Routing Rules
 - If the request involves a document → Document Analyst first, then optionally Interest Profiler.
 - If the request involves a specific URL or topic for deep research → Deep Analyst.
 - If the request involves weekly review or trend synthesis → Insight Synthesizer.
+- If the request involves a systemic research project or discovery pipeline → Research Discovery Workflow (via WorkflowTool).
 - If the request is a profile management action → Interest Profiler directly.
 - If ambiguous, ask one clarifying question before delegating.
 
@@ -59,6 +65,7 @@ task_team = Team(
     model=pro_model,
     members=[document_analyst, interest_profiler, deep_analyst, insight_synthesizer],
     instructions=instructions,
+    tools=[WorkflowTool(workflow=research_workflow)],
     add_datetime_to_context=True,
     add_history_to_context=True,
     num_history_runs=5,

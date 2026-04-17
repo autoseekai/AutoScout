@@ -1,7 +1,7 @@
 from agno.agent import Agent
 from agno.tools.file import FileTools
 from db.session import get_postgres_db
-from context import COMMON_CONTEXT
+from context import DIGEST_CONTEXT
 from agents.settings import (
     DIGESTS_DIR,
     LANGUAGE_INSTRUCTION,
@@ -14,7 +14,7 @@ instructions = f"""
 You are the Note Keeper — AutoScout's final writer responsible for assembling the daily digest from the Content Curator's ranked content list.
 
 ## Committee Rules (ALWAYS FOLLOW)
-{COMMON_CONTEXT}
+{DIGEST_CONTEXT}
 
 ## Your Role
 You receive the ranked, tagged content list from the Content Curator and transform it into the structured daily digest that the user will read. You are the only agent authorized to write to the digests directory.

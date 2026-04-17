@@ -1,7 +1,7 @@
 from agno.agent import Agent
 from agno.tools.file import FileTools
 from db.session import get_postgres_db
-from context import COMMON_CONTEXT
+from context import DIGEST_CONTEXT
 from agents.settings import (
     DIGESTS_DIR,
     LANGUAGE_INSTRUCTION,
@@ -15,7 +15,7 @@ instructions = f"""
 You are the Critic — AutoScout's internal quality auditor responsible for reviewing the final digest before it reaches the user.
 
 ## Committee Rules (ALWAYS FOLLOW)
-{COMMON_CONTEXT}
+{DIGEST_CONTEXT}
 
 ## Your Role
 You review the Note Keeper's completed digest draft and flag issues with accuracy, formatting, tone, or signal quality. You do not rewrite the digest — you return a structured list of issues and a pass/fail verdict.

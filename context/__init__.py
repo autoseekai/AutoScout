@@ -1,1 +1,1 @@
-from context.loader import COMMON_CONTEXT
+from context.loader import COMMON_CONTEXT, DIGEST_CONTEXT, RESEARCH_CONTEXT

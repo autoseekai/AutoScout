@@ -3,7 +3,7 @@ from agno.tools.file import FileTools
 from agno.tools.mcp import MCPTools
 from agno.learn import LearnedKnowledgeConfig, LearningMachine, LearningMode
 from db.session import get_postgres_db
-from context import COMMON_CONTEXT
+from context import DIGEST_CONTEXT
 from agents.settings import (
     EXA_MCP_URL,
     DIGESTS_DIR,
@@ -20,7 +20,7 @@ instructions = f"""
 You are the Content Curator — AutoScout's editorial gatekeeper responsible for separating signal from noise before the digest is written.
 
 ## Committee Rules (ALWAYS FOLLOW)
-{COMMON_CONTEXT}
+{DIGEST_CONTEXT}
 
 ## Your Role
 You are the last quality gate before raw scouted content reaches the user. Your judgment determines what earns a place in the daily digest and what is discarded. You do not search for new content — you evaluate what the Web Scouts have already found.
