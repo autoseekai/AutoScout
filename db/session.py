@@ -6,9 +6,11 @@ from db.url import db_url
 
 DB_ID = "autoscout-db"
 
-def get_postgres_db(contents_table: str | None = None) -> PostgresDb:
-    if contents_table is not None:
-        return PostgresDb(id=DB_ID, db_url=db_url, knowledge_table=contents_table)
+def get_postgres_db(table_name: str | None = None, is_knowledge: bool = False) -> PostgresDb:
+    if table_name is not None:
+        if is_knowledge:
+            return PostgresDb(id=DB_ID, db_url=db_url, knowledge_table=table_name)
+        return PostgresDb(id=DB_ID, db_url=db_url, session_table=table_name)
     return PostgresDb(id=DB_ID, db_url=db_url)
 
 def create_knowledge(name: str, table_name: str) -> Knowledge:
@@ -20,5 +22,5 @@ def create_knowledge(name: str, table_name: str) -> Knowledge:
             search_type=SearchType.hybrid,
             embedder=SentenceTransformerEmbedder(id="BAAI/bge-m3", dimensions=1024),
         ),
-        contents_db=get_postgres_db(contents_table=f"{table_name}_contents"),
+        contents_db=get_postgres_db(table_name=f"{table_name}_contents", is_knowledge=True),
     )

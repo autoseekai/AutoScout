@@ -1,6 +1,7 @@
 from agno.agent import Agent
 from agents.settings import pro_model, LANGUAGE_INSTRUCTION
 from context import RESEARCH_CONTEXT
+from db.session import get_postgres_db
 
 instructions = f"""
 You are the Research Planner — responsible for producing a clear, structured task plan
@@ -42,5 +43,6 @@ planner = Agent(
     model=pro_model,
     instructions=instructions,
     add_datetime_to_context=True,
+    db=get_postgres_db(table_name="research_lead_sessions"),
     markdown=True,
 )

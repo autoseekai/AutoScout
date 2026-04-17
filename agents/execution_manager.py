@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from agno.agent import Agent
 from agents.settings import pro_model, LANGUAGE_INSTRUCTION
 from context import RESEARCH_CONTEXT
+from db.session import get_postgres_db
 
 
 class ManagerDecision(BaseModel):
@@ -49,7 +50,8 @@ execution_manager = Agent(
     name="Execution Manager",
     model=pro_model,
     instructions=instructions,
-    response_model=ManagerDecision,
+    db=get_postgres_db(table_name="research_lead_sessions"),
+    output_schema=ManagerDecision,
     add_datetime_to_context=True,
     markdown=False,   # Structured JSON output — no markdown wrapping
 )

@@ -1,2 +1,2 @@
-from workflows.daily_digest import daily_digest
+from workflows.daily_digest import daily_digest_workflow
 from workflows.research_workflow import research_workflow

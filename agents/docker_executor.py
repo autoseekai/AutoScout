@@ -2,6 +2,7 @@ from agno.agent import Agent
 from agno.tools.docker import DockerTools
 from agents.settings import pro_model, LANGUAGE_INSTRUCTION
 from context import RESEARCH_CONTEXT
+from db.session import get_postgres_db
 
 instructions = f"""
 You are the Docker Executor — AutoScout's sandboxed environment runner.
@@ -32,18 +33,14 @@ You are responsible for setting up the container environment, installing necessa
 {LANGUAGE_INSTRUCTION}
 """
 
-docker_tools = DockerTools(
-    enable_container_management=True,
-    enable_image_management=True,
-    enable_volume_management=False,
-    enable_network_management=False,
-)
+docker_tools = DockerTools()
 
 docker_executor = Agent(
     id="docker-executor",
     name="Docker Executor",
     model=pro_model,
     instructions=instructions,
+    db=get_postgres_db(table_name="research_lead_sessions"),
     tools=[docker_tools],
     add_datetime_to_context=True,
     markdown=True,

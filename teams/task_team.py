@@ -4,7 +4,7 @@ from agents.document_analyst import document_analyst
 from agents.interest_profiler import interest_profiler
 from agents.deep_analyst import deep_analyst
 from agents.insight_synthesizer import insight_synthesizer
-from agno.tools.workflow import WorkflowTool
+from agno.tools.workflow import WorkflowTools
 from agents.settings import LANGUAGE_INSTRUCTION, interest_learnings, pro_model
 from context import COMMON_CONTEXT
 from workflows.research_workflow import research_workflow
@@ -50,7 +50,7 @@ Use when the user wants to initiate a high-level research project that requires 
 - If the request involves a document → Document Analyst first, then optionally Interest Profiler.
 - If the request involves a specific URL or topic for deep research → Deep Analyst.
 - If the request involves weekly review or trend synthesis → Insight Synthesizer.
-- If the request involves a systemic research project or discovery pipeline → Research Discovery Workflow (via WorkflowTool).
+- If the request involves a systemic research project or discovery pipeline → Research Discovery Workflow (via WorkflowTools).
 - If the request is a profile management action → Interest Profiler directly.
 - If ambiguous, ask one clarifying question before delegating.
 
@@ -65,7 +65,7 @@ task_team = Team(
     model=pro_model,
     members=[document_analyst, interest_profiler, deep_analyst, insight_synthesizer],
     instructions=instructions,
-    tools=[WorkflowTool(workflow=research_workflow)],
+    tools=[WorkflowTools(workflow=research_workflow)],
     add_datetime_to_context=True,
     add_history_to_context=True,
     num_history_runs=5,

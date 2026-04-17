@@ -1,6 +1,7 @@
 from agno.agent import Agent
 from agents.settings import pro_model, LANGUAGE_INSTRUCTION
 from context import RESEARCH_CONTEXT
+from db.session import get_postgres_db
 
 instructions = f"""
 You are the Plan Reviewer — the adversarial critic of every research plan before execution.
@@ -31,6 +32,7 @@ plan_reviewer = Agent(
     name="Plan Reviewer",
     model=pro_model,
     instructions=instructions,
+    db=get_postgres_db(table_name="research_lead_sessions"),
     add_datetime_to_context=True,
     markdown=True,
 )

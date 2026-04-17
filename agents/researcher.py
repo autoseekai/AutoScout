@@ -11,7 +11,6 @@ from agents.settings import (
 )
 from context import RESEARCH_CONTEXT
 
-agent_db = get_postgres_db()
 
 instructions = f"""
 You are the Researcher — AutoScout's specialist for deep literature and web research.
@@ -49,7 +48,7 @@ researcher = Agent(
     id="researcher",
     name="Researcher",
     model=pro_model,
-    db=agent_db,
+    db=get_postgres_db(table_name="research_lead_sessions"),
     instructions=instructions,
     tools=[MCPTools(url=EXA_MCP_URL)],
     knowledge=interest_knowledge,

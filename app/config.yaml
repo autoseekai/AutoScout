@@ -16,3 +16,10 @@ chat:
       - "What are my active interest categories and which ones are currently drifting or stale?"
       - "Give me a weekly trend summary based on my recent digests."
       - "Deep dive into the latest developments in agentic AI workflows."
+
+    # Research Center (research-lead)
+    # Trigger: Deep research tasks launching the research_workflow
+    research-lead:
+      - "启动一项研究：评估本地 LLM（如 Qwen2.5 7B）在实时金融数据情绪分析上的可行性。"
+      - "Start a research project: Propose a Docker-based sandbox architecture for safely executing Agent-generated code."
+      - "研究课题：目前有哪些前沿的方法能降低长期 Agent 记忆系统中的检索延迟（Retriever latency）？"

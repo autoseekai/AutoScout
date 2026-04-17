@@ -74,7 +74,7 @@ research_workflow = Workflow(
         "Iterative research pipeline: Idea → Method → Experiment, "
         "driven by an Execution Manager that refines the goal each iteration."
     ),
-    db=get_postgres_db(),
+    db=get_postgres_db(table_name="research_workflow_sessions"),
     steps=[
         Loop(
             name="Research Iteration Loop",
@@ -90,7 +90,7 @@ research_workflow = Workflow(
                 ),
             ],
             end_condition=check_satisfied,
-            max_iterations=3,
+            max_iterations=1,
             forward_iteration_output=True,
         ),
     ],

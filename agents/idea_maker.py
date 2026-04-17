@@ -2,6 +2,7 @@ from agno.agent import Agent
 from agno.tools.mcp import MCPTools
 from agents.settings import pro_model, EXA_MCP_URL, LANGUAGE_INSTRUCTION
 from context import RESEARCH_CONTEXT
+from db.session import get_postgres_db
 
 instructions = f"""
 You are the Idea Maker — AutoScout's creative hypothesis generator.
@@ -36,6 +37,7 @@ idea_maker = Agent(
     name="Idea Maker",
     model=pro_model,
     instructions=instructions,
+    db=get_postgres_db(table_name="research_lead_sessions"),
     tools=[MCPTools(url=EXA_MCP_URL)],
     add_datetime_to_context=True,
     markdown=True,

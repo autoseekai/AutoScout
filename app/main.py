@@ -22,10 +22,16 @@ from agents.critic import critic
 from agents.content_curator import content_curator
 from agents.note_keeper import note_keeper
 from agents.insight_synthesizer import insight_synthesizer
+from agents.research_lead import research_lead
 
 from teams.coordinate_team import coordinate_team
-from teams.task_team import task_team
+from teams.task_team import task_team  # task_team internally loads research_workflow via WorkflowTools
 from workflows.daily_digest import daily_digest_workflow
+
+# NOTE: research_workflow is intentionally NOT registered in AgentOS.workflows.
+# It is an internal execution pipeline triggered by task_team via WorkflowTools.
+# Registering it here would fail because AgentOS expects only Agent objects in
+# Workflow Steps, but research_workflow uses Team objects (planning_team, control_team).
 
 agent_os = AgentOS(
     name="AutoScout OS",
@@ -34,7 +40,8 @@ agent_os = AgentOS(
     db=get_postgres_db(),
     agents=[
         interest_profiler, document_analyst, deep_analyst,
-        critic, content_curator, note_keeper, insight_synthesizer
+        critic, content_curator, note_keeper, insight_synthesizer,
+        research_lead,
     ],
     teams=[coordinate_team, task_team],
     workflows=[daily_digest_workflow],

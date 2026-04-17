@@ -2,6 +2,7 @@ from agno.agent import Agent
 from agno.tools.mcp import MCPTools
 from agents.settings import pro_model, EXA_MCP_URL, LANGUAGE_INSTRUCTION
 from context import RESEARCH_CONTEXT
+from db.session import get_postgres_db
 
 instructions = f"""
 You are the Engineer — AutoScout's pure code generation specialist.
@@ -39,6 +40,7 @@ engineer = Agent(
     model=pro_model,
     instructions=instructions,
     tools=[MCPTools(url=EXA_MCP_URL)],
+    db=get_postgres_db(table_name="research_lead_sessions"),
     add_datetime_to_context=True,
     markdown=True,
 )
