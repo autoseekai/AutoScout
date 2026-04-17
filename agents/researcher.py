@@ -3,7 +3,7 @@ from agno.tools.mcp import MCPTools
 from agno.learn import LearnedKnowledgeConfig, LearningMachine, LearningMode
 from db.session import get_postgres_db
 from agents.settings import (
-    pro_model,
+    flash_model,
     EXA_MCP_URL,
     LANGUAGE_INSTRUCTION,
     interest_knowledge,
@@ -47,7 +47,7 @@ to support or refute the current phase's hypotheses or method candidates.
 researcher = Agent(
     id="researcher",
     name="Researcher",
-    model=pro_model,
+    model=flash_model,
     db=get_postgres_db(table_name="research_lead_sessions"),
     instructions=instructions,
     tools=[MCPTools(url=EXA_MCP_URL)],

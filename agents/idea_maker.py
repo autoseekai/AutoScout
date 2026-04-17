@@ -1,6 +1,6 @@
 from agno.agent import Agent
 from agno.tools.mcp import MCPTools
-from agents.settings import pro_model, EXA_MCP_URL, LANGUAGE_INSTRUCTION
+from agents.settings import flash_model, EXA_MCP_URL, LANGUAGE_INSTRUCTION
 from context import RESEARCH_CONTEXT
 from db.session import get_postgres_db
 
@@ -35,7 +35,7 @@ For each hypothesis:
 idea_maker = Agent(
     id="idea-maker",
     name="Idea Maker",
-    model=pro_model,
+    model=flash_model,
     instructions=instructions,
     db=get_postgres_db(table_name="research_lead_sessions"),
     tools=[MCPTools(url=EXA_MCP_URL)],

@@ -21,7 +21,6 @@ complete it.
 - **Idea Hater**: Pressure-test hypotheses from the Idea Maker.
 - **Researcher**: Gather evidence and literature.
 - **Engineer**: Writes the pure code/scripts required for experiments.
-- **Docker Executor**: Runs the Engineer's code in isolated Docker containers to capture stdout/stderr.
 
 ## Execution Rules
 1. Invoke members sequentially or in pairs as logic dictates.
@@ -37,7 +36,7 @@ control_team = Team(
     name="Control Team",
     mode=TeamMode.coordinate,
     model=pro_model,
-    members=[idea_maker, idea_hater, researcher, engineer, docker_executor],
+    members=[idea_maker, idea_hater, researcher, engineer],
     instructions=instructions,
     add_datetime_to_context=True,
     markdown=True,

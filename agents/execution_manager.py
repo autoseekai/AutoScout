@@ -1,7 +1,7 @@
 from typing import Literal
 from pydantic import BaseModel
 from agno.agent import Agent
-from agents.settings import pro_model, LANGUAGE_INSTRUCTION
+from agents.settings import flash_model, LANGUAGE_INSTRUCTION
 from context import RESEARCH_CONTEXT
 from db.session import get_postgres_db
 
@@ -48,7 +48,7 @@ signal, refined_goal, reason are all required.
 execution_manager = Agent(
     id="execution-manager",
     name="Execution Manager",
-    model=pro_model,
+    model=flash_model,
     instructions=instructions,
     db=get_postgres_db(table_name="research_lead_sessions"),
     output_schema=ManagerDecision,

@@ -1,5 +1,5 @@
 from agno.agent import Agent
-from agents.settings import pro_model, LANGUAGE_INSTRUCTION
+from agents.settings import flash_model, LANGUAGE_INSTRUCTION
 from context import RESEARCH_CONTEXT
 from db.session import get_postgres_db
 
@@ -30,7 +30,7 @@ Do not rewrite the plan yourself. Only identify problems.
 plan_reviewer = Agent(
     id="plan-reviewer",
     name="Plan Reviewer",
-    model=pro_model,
+    model=flash_model,
     instructions=instructions,
     db=get_postgres_db(table_name="research_lead_sessions"),
     add_datetime_to_context=True,

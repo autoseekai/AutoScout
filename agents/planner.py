@@ -20,7 +20,6 @@ You must design tasks that can be executed by the Control Team, which consists o
 - **Idea Hater**: Adversarially pressure-tests hypotheses.
 - **Researcher**: Conducts web and literature searches.
 - **Engineer**: Writes pure code for experiments.
-- **Docker Executor**: Runs the Engineer's code in isolated containers to gather empirical feedback.
 
 ## Plan Format
 Output a Markdown document with the following sections:

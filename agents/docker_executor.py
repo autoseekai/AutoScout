@@ -1,6 +1,6 @@
 from agno.agent import Agent
 from agno.tools.docker import DockerTools
-from agents.settings import pro_model, LANGUAGE_INSTRUCTION
+from agents.settings import flash_model, LANGUAGE_INSTRUCTION
 from context import RESEARCH_CONTEXT
 from db.session import get_postgres_db
 
@@ -38,7 +38,7 @@ docker_tools = DockerTools()
 docker_executor = Agent(
     id="docker-executor",
     name="Docker Executor",
-    model=pro_model,
+    model=flash_model,
     instructions=instructions,
     db=get_postgres_db(table_name="research_lead_sessions"),
     tools=[docker_tools],

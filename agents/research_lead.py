@@ -1,7 +1,7 @@
 from agno.agent import Agent
 from agno.tools.workflow import WorkflowTools
 from workflows.research_workflow import research_workflow
-from agents.settings import pro_model, LANGUAGE_INSTRUCTION
+from agents.settings import flash_model, LANGUAGE_INSTRUCTION
 from context import RESEARCH_CONTEXT
 from db import get_postgres_db
 
@@ -27,7 +27,7 @@ research_lead = Agent(
     id="research-lead",
     name="AutoScout - Research Center",
     role="Dedicated interface for triggering the internal Research Discovery Pipeline.",
-    model=pro_model,
+    model=flash_model,
     instructions=instructions,
     tools=[WorkflowTools(workflow=research_workflow)],
     db=get_postgres_db(table_name="research_lead_sessions"),
